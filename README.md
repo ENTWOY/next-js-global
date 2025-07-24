@@ -3,12 +3,20 @@
 accessorKey: 'serieDocument'
 
 // Opción - Acceso anidado con template string
-accessorFn: (row) => `${row.original.CommercialTicket.serieDocument} - ${row.original.CommercialTicket.numberDocument}`
+{
+  id: 'serieDocument',
+  accessorKey: 'serieDocument',
+  header: 'Ticket de NV/NCC',
+  cell: ({ row }) => {
+    const ticket = row.original?.CommercialTicket;
+    return ticket ? `${ticket.serieDocument || ''} - ${ticket.numberDocument || ''}`.trim() : '';
+  },
+}
 
-// Opción 1 - Acceso simple
+// Opción - Acceso simple
 accessorKey: 'warehouseId'
 
-// Opción 2 - Operación reduce
+// Opción - Operación reduce
 accessorFn: (row) => {
   const totalPrice = row.ProductSetItem.reduce((acc, item) => {
     return acc + parseFloat(item.price);
@@ -16,7 +24,7 @@ accessorFn: (row) => {
   return totalPrice;
 }
 
-// others
+// Renderizado de imágenes
 cell: ({ row }) => {
   const { files } = row.original;
   return (
