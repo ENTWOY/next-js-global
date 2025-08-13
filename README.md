@@ -24,7 +24,7 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
+```
 
 ```
 // Opción - Acceso directo
