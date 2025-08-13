@@ -1,3 +1,31 @@
+<small>
+```javascript
+/** @type {import('next').NextConfig} */
+
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_API;
+const hostname = baseUrl ? new URL(baseUrl).hostname : '';
+
+const nextConfig = {
+  reactStrictMode: false,
+  experimental: {
+    optimizePackageImports: ['@svgr/webpack'],
+  },
+  images: {
+    domains: hostname ? [hostname] : [],
+    remotePatterns: [
+      { protocol: "https", hostname: "api.lorem.space" },
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "a0.muscache.com" },
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "cdn.icon-icons.com" },
+      { protocol: "https", hostname: "ih1.redbubble.net" },
+    ],
+  },
+};
+
+module.exports = nextConfig;
+
+
 ```
 // Opción - Acceso directo
 accessorKey: 'serieDocument'
