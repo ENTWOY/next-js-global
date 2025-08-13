@@ -1,5 +1,4 @@
-<small>
-```javascript
+<pre style="font-size: 12px;"><code>
 /** @type {import('next').NextConfig} */
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_API;
@@ -24,7 +23,7 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-```
+</code></pre>
 
 ```
 // Opción - Acceso directo
