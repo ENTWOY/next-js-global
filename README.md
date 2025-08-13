@@ -1,4 +1,4 @@
-<code>
+<pre><code>
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_API;
 const hostname = baseUrl ? new URL(baseUrl).hostname : '';
 
@@ -66,7 +66,7 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-</code>
+</code></pre>
 
 <pre style="font-size: 12px;"><code>
 /** @type {import('next').NextConfig} */
