@@ -1,3 +1,17 @@
+
+```
+git fetch origin
+git checkout -b upgrade/nextjs15-migration origin/upgrade/nextjs15-migration
+
+or
+
+git checkout upgrade/nextjs15-migration
+git pull origin upgrade/nextjs15-migration
+
+git fetch origin
+git merge origin/dev
+```
+
 <pre><code>
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_API;
 const hostname = baseUrl ? new URL(baseUrl).hostname : '';
