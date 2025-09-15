@@ -1,3 +1,35 @@
+<pre><code>
+"use client";
+import { useEffect, useState } from "react";
+
+export default function PersonsList() {
+  const [persons, setPersons] = useState<any[]>([]);
+
+  useEffect(() => {
+    const ws = new WebSocket("ws://localhost:3001");
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "new-person") {
+        setPersons((prev) => [...prev, data.payload]);
+      }
+    };
+
+    return () => ws.close();
+  }, []);
+
+  return (
+    <div>
+      <h1>Lista de Personas</h1>
+      <ul>
+        {persons.map((p) => (
+          <li key={p.id}>{p.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+</code></pre>
 
 ```
 git fetch origin
