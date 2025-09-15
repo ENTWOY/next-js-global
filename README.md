@@ -1,4 +1,4 @@
-<pre><code>
+```
 "use client";
 import { useEffect, useState } from "react";
 
@@ -29,7 +29,7 @@ export default function PersonsList() {
     </div>
   );
 }
-</code></pre>
+```
 
 ```
 git fetch origin
