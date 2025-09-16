@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import styles from '../styles/Christmas.module.css';
+
+interface Snowflake {
+  id: number;
+  left: string;
+  animationDuration: string;
+  animationDelay: string;
+}
+
+const ChristmasDecorations: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
+
+  // Generar copos de nieve (opcional, según tu ejemplo)
+  useEffect(() => {
+    const generateSnowflakes = () => {
+      const newSnowflakes: Snowflake[] = [];
+      for (let i = 0; i < 50; i++) {
+        newSnowflakes.push({
+          id: i,
+          left: `${Math.random() * 100}%`,
+          animationDuration: `${Math.random() * 3 + 2}s`,
+          animationDelay: `${Math.random() * 5}s`
+        });
+      }
+      setSnowflakes(newSnowflakes);
+    };
+    generateSnowflakes();
+  }, []);
+
+  const ornaments = [
+    "🎅", // Papá Noel
+    "🤶", // Mamá Noel
+    "⭐", // Estrella
+    "🎄", // Árbol de Navidad
+    "🎁", // Regalo
+    "✨", // Brillo
+    "⛄", // Muñeco de nieve sin nieve
+    "🔔", // Campana
+  ];
+
+
+  return (
+    <>
+      {snowflakes.map(snowflake => (
+        <div
+          key={snowflake.id}
+          className={styles.snowflake}
+          style={{
+            left: snowflake.left,
+            animationDuration: snowflake.animationDuration,
+            animationDelay: snowflake.animationDelay
+          }}
+        />
+      ))}
+      <div className={styles.ornamentsContainer}>
+        {[...Array(8)].map((_, index) => {
+          // Selecciona el ícono según el índice para alternarlos
+          const icon = ornaments[index % ornaments.length];
+          return (
+            <div key={index} className={styles.ornament}>
+              {icon}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
+
+export default ChristmasDecorations;
