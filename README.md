@@ -1,4 +1,16 @@
 ```
+const filteredWarehouses = useMemo(() => {
+    if (!warehouse || !filters.establishmentId) return [];
+    return warehouse.filter((wh) => wh.establishmentId === filters.establishmentId);
+  }, [warehouse, filters.establishmentId]);
+
+const filteredWarehouses = useMemo(() => {
+    if (!warehouse || !establishmentId) return [];
+    return warehouse.filter((wh) => wh.establishmentId === establishmentId);
+  }, [warehouse, establishmentId]);
+```
+
+```
 "use client";
 import { useEffect, useState } from "react";
 
