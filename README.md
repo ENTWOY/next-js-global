@@ -1,4 +1,52 @@
 ```
+//SOCKET IO
+
+  const socketRef = useRef<Socket | null>(null);
+
+  // Conectar al servidor de Socket.IO cuando se monta el componente
+  useEffect(() => {
+    const socket = io(SOCKET_SERVER_URL, {
+      transports: ["websocket"],
+      withCredentials: true,
+    }); // Crear la conexión con el servidor
+    socketRef.current = socket; // Guardar la referencia del socket
+
+    // Escuchar cuando se reciba un mensaje del servidor
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    socket.on("commercialTicketCancel", (data: any) => {
+      toast.success("Ticket cancelado exitosamente", {
+        position: "top-center",
+      });
+
+      console.log("Recibido un mensaje del servidor:", data);
+      setTickets((prevTickets) =>
+        prevTickets.map((note) =>
+          note.id === data.id
+            ? {
+                ...note,
+                canceledAt: data.canceledAt, // Actualiza el campo canceledAt
+                Canceler: {
+                  id: data.Canceler.id, // Actualiza el id del Canceler
+                  username: data.Canceler.username, // Actualiza el username del Canceler
+                },
+                CommercialTicket: {
+                  ...note.CommercialTicket,
+                  status: "C", // Cambia el status del ticket
+                },
+              }
+            : note
+        )
+      );
+    });
+
+    // Limpiar la conexión cuando el componente se desmonte
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+```
+
+```
 // useEffect(() => {
   //   const socket = io(SOCKET_SERVER_URL, {
   //     transports: ["websocket"],
