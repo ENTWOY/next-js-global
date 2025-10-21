@@ -1,4 +1,114 @@
 ```
+// useEffect(() => {
+  //   const socket = io(SOCKET_SERVER_URL, {
+  //     transports: ["websocket"],
+  //     withCredentials: true,
+  //   });
+  //   socketRef.current = socket;
+
+  //   // Escucha de cuando se acepta un ticket
+  //   socket.on("commercialNoteNewPendingShipment", (data: any) => {
+  //     toast.success("Ticket aceptado exitosamente", {
+  //       position: "top-center",
+  //     });
+
+  //     // Actulizar el estado de shipments original
+
+  //     setShipments((prevShipments) => {
+  //       if (prevShipments.length > 0) {
+  //         const updatedShipments = [...prevShipments];
+  //         updatedShipments[0] = {
+  //           ...updatedShipments[0],
+  //           commercialNotes: [data, ...updatedShipments[0].commercialNotes],
+  //         };
+  //         return updatedShipments;
+  //       }
+  //       return prevShipments;
+  //     });
+  //   });
+
+  //   // Escucha de cuando se empaqueta un ticket
+  //   socket.on("commercialTicketPackage", (data: any) => {
+  //     toast.success("Ticket empaquetado exitosamente", {
+  //       position: "top-center",
+  //     });
+
+  //     // Actualizar el estado de shipments original
+  //     setFilteredShipments((prevShipments) => {
+  //       const updatedShipments = prevShipments.map((shipment, index) => {
+  //         if (index !== activeShipmentIndex) return shipment;
+  //         return {
+  //           ...shipment,
+  //           commercialNotes: shipment.commercialNotes.map((note) =>
+  //             note.id === data.id
+  //               ? {
+  //                   ...note,
+  //                   CommercialTicket: {
+  //                     ...note.CommercialTicket,
+  //                     shippingStatus: data.CommercialTicket.shippingStatus,
+  //                   },
+  //                 }
+  //               : note
+  //           ),
+  //         };
+  //       });
+  //       return updatedShipments;
+  //     });
+
+  //     // Actualizar estado de shipments para que filterShipments se actualice
+  //     setTimeout(() => {
+  //       setFilteredShipments((prevShipments) => {
+  //         const updatedShipments = prevShipments.map((shipment, index) => {
+  //           if (index !== activeShipmentIndex) return shipment;
+  //           return {
+  //             ...shipment,
+  //             commercialNotes: shipment.commercialNotes.filter(
+  //               (note) => note.id !== data.id
+  //             ),
+  //           };
+  //         });
+  //         return updatedShipments;
+  //       });
+  //     }, 2000);
+  //   });
+
+  //   // Socket de escucha cuando se cancelar un ticket y commercialNote
+  //   socket.on("commercialTicketCancel", (data: any) => {
+  //     toast.error("Ticket cancelado", {
+  //       position: "top-center",
+  //     });
+
+  //     // Actualizar el estado shipments
+  //     setShipments((prevShipments) =>
+  //       prevShipments.map((shipment) => ({
+  //         ...shipment,
+  //         commercialNotes: shipment.commercialNotes.map((item) => {
+  //           if (item.CommercialTicket.id === data.CommercialTicket.id) {
+  //             return {
+  //               ...item,
+  //               CommercialTicket: {
+  //                 ...item.CommercialTicket,
+  //                 status: "C", // Actualiza el estado a "C"
+  //                 // Puedes actualizar otros campos si es necesario
+  //               },
+  //             };
+  //           }
+  //           return item;
+  //         }),
+  //       }))
+  //     );
+  //   });
+
+  //   return () => {
+  //     socket.off("commercialNoteNewPendingShipment");
+  //     socket.off("commercialTicketPackage");
+  //     socket.off("commercialTicketCancel");
+  //     socket.disconnect();
+  //   };
+  // }, []);
+```
+
+```
 const filteredWarehouses = useMemo(() => {
     if (!warehouse || !filters.establishmentId) return [];
     return warehouse.filter((wh) => wh.establishmentId === filters.establishmentId);
