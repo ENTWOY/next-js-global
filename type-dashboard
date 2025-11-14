@@ -1,0 +1,19 @@
+export interface SalesSummary {
+  summaryByTime: {
+    Daily: SalesSummaryByTime[];
+    Week: SalesSummaryByTime[];
+    Month: SalesSummaryByTime[];
+    CanceledPerMonth: SalesSummaryByTime[];
+  };
+}
+
+export interface SalesSummaryByTime {
+  warehouseId: number;
+  warehouseName: string;
+  warehouseCode: string;
+  establishmentId: number;
+  establishmentCode: string;
+  totalApproved: number;
+  totalCanceled: number;
+  totalSales: number;
+}
